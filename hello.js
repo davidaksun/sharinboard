@@ -5,7 +5,6 @@ if(Meteor.isClient) {
 
     Template.leaderboard.helpers({
         'player': function (){
-            var currentUserId = Meteor.userId();
             return PlayersList.find({}, {sort: {score: -1, name: 1}
                 });
         },
@@ -87,6 +86,5 @@ if(Meteor.isServer){
         'modifyPlayerScore': function(selectedPlayer, scoreValue){
             PlayersList.update(selectedPlayer, {$inc: {score: scoreValue} });
         }
-
     });
 }
